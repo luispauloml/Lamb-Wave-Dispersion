@@ -139,7 +139,7 @@ class Lamb:
     
     def __init__(self, thickness, nmodes_sym, nmodes_antisym, fd_max, vp_max, 
                  c_L, c_S, c_R = None, fd_points=100, vp_step=100, 
-                 material=''):
+                 material='', print_flag=False):
         """"
         Parameters
         ----------
@@ -165,6 +165,8 @@ class Lamb:
             Increment between phase velocity intervals.
         material : str, optional
             Name of the material being analyzed.
+        print_flag : bool, optional, default: False
+            Flag to print messages during evaluation.
             
         """
         
@@ -180,6 +182,7 @@ class Lamb:
         self.fd_points = fd_points
         self.vp_step = vp_step
         self.material = material
+        self.print_flag = print_flag
         
         # Solve the dispersion equations.
         
@@ -366,11 +369,13 @@ class Lamb:
         fd_arr = np.linspace(0, self.fd_max, self.fd_points)      
         result = np.zeros((len(fd_arr), nmodes + 1))
         
-        print(f'\nCalculating {function.__name__[1:]} modes..\n')
+        if self.print_flag:
+            print(f'\nCalculating {function.__name__[1:]} modes..\n')
         
         for i, fd in enumerate(fd_arr):
             
-            print(f'{i}/{self.fd_points} - {np.around(fd, 1)} kHz × mm')
+            if self.print_flag:
+                print(f'{i}/{self.fd_points} - {np.around(fd, 1)} kHz × mm')
         
             result[i][0] = fd
         
