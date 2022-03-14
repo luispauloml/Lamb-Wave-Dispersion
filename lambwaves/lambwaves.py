@@ -69,6 +69,8 @@ Email:          francisco.rotea@gmail.com
 
 """
 
+import pickle
+
 import numpy as np
 
 import matplotlib.pyplot as plt
@@ -79,7 +81,7 @@ import scipy.optimize
 from .plot_utils import add_plot, add_cutoff_freqs, add_velocities
 from .utils import interpolate, correct_instability, write_txt, find_max
 
-class Lamb:
+class Lamb(object):
     """A class used to calculate and plot Lamb wave dispersion curves 
     for traction-free, homogeneous and isotropic plates. It also allows 
     to generate an animation of the displacement vector field.
@@ -926,3 +928,21 @@ class Lamb:
                   filename, header)
         write_txt(self.k_sym, self.k_antisym, 'Wavenumber', 
                   filename, header)
+
+    def save_object(self, filename):
+        """Save the Lamb object to a binary file.
+
+        Save an instance of Lamb to a binary file that can be loaded
+        afterwards without the need to be re-evaluated.
+
+        NOTE: this method will always overwrite an existing file.
+
+        Parameters
+        ----------
+        filename : str
+            The filename of the binary file to be created.
+
+        """
+
+        with open(filename, 'wb') as file_:
+            pickle.dump(self, file_, pickle.HIGHEST_PROTOCOL)
