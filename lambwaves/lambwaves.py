@@ -139,6 +139,22 @@ class Lamb(object):
     
     ffmpeg_path = 'C:/Program Files/ImageMagick-7.0.10-Q16/ffmpeg.exe'
     
+    def load_object(filename):
+        """Load a Lamb object.
+
+        Load an instance of Lamb without the need to be re-evaluated.
+
+        Parameters
+        ----------
+        filename : str
+            The filename of the binary file to be loaded.
+
+        """
+
+        with open(filename, 'rb') as file_:
+            obj = pickle.load(file_)
+        return obj
+
     def __init__(self, thickness, nmodes_sym, nmodes_antisym, fd_max, vp_max, 
                  c_L, c_S, c_R = None, fd_points=100, vp_step=100, 
                  material='', print_flag=False):
