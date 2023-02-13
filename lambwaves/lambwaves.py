@@ -543,7 +543,7 @@ class Lamb(object):
         # Generate the quiver plot animation.
 
         fig, ax = plt.subplots(figsize=(8, 5))
-        fig.canvas.set_window_title(f'Displacement Field (mode {mode})')
+        fig.canvas.manager.set_window_title(f'Displacement Field (mode {mode})')
         
         quiver = ax.quiver(x, y, u, w, scale=5*max_disp, scale_units='inches')
         
@@ -669,7 +669,7 @@ class Lamb(object):
         """
         
         fig, ax = plt.subplots(figsize=(7, 4))
-        fig.canvas.set_window_title('Phase Velocity')
+        fig.canvas.manager.set_window_title('Phase Velocity')
         
         # Calculate the maximum value to scale the ylim of the axes.
         
@@ -732,7 +732,7 @@ class Lamb(object):
         """
               
         fig, ax = plt.subplots(figsize=(7, 4))
-        fig.canvas.set_window_title('Group Velocity')
+        fig.canvas.manager.set_window_title('Group Velocity')
         
         # Calculate the maximum value to scale the ylim of the axes.
         
@@ -793,7 +793,7 @@ class Lamb(object):
         """
             
         fig, ax = plt.subplots(figsize=(7, 4))
-        fig.canvas.set_window_title('Wave Number')
+        fig.canvas.manager.set_window_title('Wave Number')
         
         # Calculate the maximum value to scale the ylim of the axes.
         
@@ -861,7 +861,7 @@ class Lamb(object):
         y = np.linspace(-self.h, self.h, 100) 
            
         fig, axs = plt.subplots(nrows=nrows, ncols=ncols)        
-        fig.canvas.set_window_title(f'Wave Structure (mode {mode})')
+        fig.canvas.manager.set_window_title(f'Wave Structure (mode {mode})')
         
         fig.suptitle('Mode $\mathregular{' + mode[0] + '_' + mode[1:] + '}$')
         
